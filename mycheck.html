@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        input[type="checkbox"].toggle{
+            display: none;
+        }
+        input[type="checkbox"].toggle + label{
+            display: flex;
+            align-items: center;
+        }
+        input[type="checkbox"].toggle + label::before{
+            position: relative;
+            content: "";
+            width: 62px;
+            height: 32px;
+            background-color: rgb(212, 41, 41,.5);
+            border-radius: 2rem;
+            transition: background-color .3s ease-in-out;
+        }
+        input[type="checkbox"].toggle + label::after{
+            position: absolute;
+            content: "";
+            left: 9px;
+            width: 30px;
+            height: 30px;
+            background-color: rgb(212, 41, 41);
+            border-radius: 50%;
+            transition: all .3s ease-in-out;
+        }
+        input[type="checkbox"].toggle:checked + label::before{
+            background-color: rgb(70, 130, 180,.5) ;
+        }
+        input[type="checkbox"].toggle:checked + label::after{
+            transform: translateX(100%);
+            background-color: rgb(70, 130, 180);
+        }
+        input[type="checkbox"].on-off + label::before{
+            border-radius: 0px;
+            content: "OFF";
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0;
+        }
+
+        /* on-off */
+        input[type="checkbox"].on-off + label::before{
+            background-color: gray;
+            border-radius: 0px;
+            
+        }
+        input[type="checkbox"].on-off + label::after{
+            border-radius: 0px;
+            background-color: white;
+            
+        }
+        input[type="checkbox"].on-off:checked + label::before{
+            content: "ON";
+            justify-content: flex-start;
+            background-color: rgb(0, 128, 0,.5);
+            color: white;
+        }
+        input[type="checkbox"].on-off:checked + label::after{
+            background-color: green;
+            
+        }
+
+        /* toggle2 */
+        input[type="checkbox"].toggle2 + label::before{
+           height: 10px;
+           background-color: rgba(128, 128, 128, 0.559);
+        }
+        input[type="checkbox"].toggle2 + label::after{
+            background-color: red;
+            left: 8px;
+        }
+        input[type="checkbox"].toggle2:checked + label::before{
+            background-color: rgba(128, 128, 128);
+        }
+        input[type="checkbox"].toggle2:checked + label::after{
+            background-color: steelblue;
+            transform: translateX(110%);
+            
+        }
+        
+
+
+        /* range */
+        .main{
+            width: 60%;
+            position: relative;
+        }
+        .slider{
+            -webkit-appearance: none;
+            width: 100%;
+            height: 7px;
+            opacity: .7;
+            background: linear-gradient(90deg, yellowgreen 50%, white 50%);
+            border-radius: 12px;
+        }
+        .slider::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            width:  32px;
+            height: 32px;
+            cursor: pointer;
+            position: relative;
+            z-index: 3;
+            background-color: yellowgreen;
+            border-radius: 50%;
+        }
+        .slider::-webkit-slider-thumb:focus{
+           cursor: grabbing;
+        }
+        
+    </style>
+</head>
+<body>                                                  
+    <input type="checkbox" id="check" class="toggle">
+    <label for="check"></label>
+    <br>
+    <br>
+    <input type="checkbox" id="check1" class="toggle on-off">
+    <label for="check1"></label>
+    <br>
+    <br>
+    <input type="checkbox" id="check2" class="toggle toggle2">
+    <label for="check2"></label>
+    <br>
+    <br>
+    <div class="main">
+        <input type="range" min="1" max="100" value="50" id="myrange"  class="slider" name=""  id="">
+    </div>
+    <script>
+        const slider = document.getElementById("myrange");
+        
+       
+        slider.addEventListener("input",function(){
+            let x = slider.value
+            slider.style.background = `linear-gradient(90deg, yellowgreen ${x}%, white ${x-100}%)`
+        })
+
+    </script>
+</body>
+</html>
